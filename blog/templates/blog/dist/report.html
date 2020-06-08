@@ -10,7 +10,8 @@
         <title>Dashboard - SB Admin</title>
         <link href='{% static "css/styles.css" %}' rel="stylesheet" />
         <script src='{% static "http://code.jquery.com/jquery-latest.min.js" %}'></script>
-        <link rel="stylesheet" href='{% static "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" %}'>
+        <link rel="stylesheet" href='{% static "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" %}' integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href='{% static "https://use.fontawesome.com/releases/v5.5.0/css/all.css" %}' integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <script src='{% static "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" %}'></script>
         <script src='{% static "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" %}' crossorigin="anonymous"></script>
         <style>
@@ -18,31 +19,7 @@
           padding:5%;
         }
         </style>
-        <script>
-          $( document ).ready(function() {
-             $('.trigger').click(function(){
-              $('#popup_layer, #overlay_t').show();
-              $('#popup_layer').css("top", Math.max(0, $(window).scrollTop() + 100) + "px");
-              // $('#popup_layer').css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px");
-          });
-          $('#overlay_t, .close').click(function(e){
-              e.preventDefault();
-              $('#popup_layer, #overlay_t').hide();
-          });
-      });
 
-      $( document ).ready(function() {
-         $('.trigger2').click(function(){
-          $('#popup_layer2, #overlay_t2').show();
-          $('#popup_layer2').css("top", Math.max(0, $(window).scrollTop() + 100) + "px");
-          // $('#popup_layer2').css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px");
-      });
-      $('#overlay_t2, .close').click(function(e){
-          e.preventDefault();
-          $('#popup_layer2, #overlay_t2').hide();
-      });
-      });
-          </script>
       <style media="screen">
             #overlay_t,#overlay_t2{
               background-color: #000;
@@ -72,12 +49,52 @@
               background-color: RGBA(0,0,0,0);
               color: white;
             }
+            .menubar{
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+
+            }
+
+            .menuli {
+                float: left;
+            }
+
+            .menuli a {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+            .menuli a:hover {
+                background-color: #111;
+            }
+            .nav-icon{
+                width:20px;
+                height:20px;
+            }
+            .cctv-icon{
+                width:32px;
+                height:32px;
+            }
+
       </style>
     </head>
     <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="index.html">Smart CCTV</a>
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-danger">
+            <a class="navbar-brand" href="index.html">Smart CCTV&nbsp;<img class="cctv-icon" src='{% static "img/eye.png" %}'></a>
             <!-- Navbar-->
+            <ul class="menubar">
+                <li class="menuli"><a class="active" href="#home"><img class="nav-icon" src='{% static "img/video-camera.png" %}'>&nbsp;Cameras</a></li>
+                <li class="menuli"><a href="#"><img class="nav-icon" src='{% static "img/redo.png" %}'>&nbsp;Event Log</a></li>
+                <li class="menuli"><a href="#"><img class="nav-icon" src='{% static "img/data.png" %}'>&nbsp;Video Export</a></li>
+                <li class="menuli"><a href="#"><img class="nav-icon" src='{% static "img/report.png" %}'>&nbsp;Report</a></li>
+                <li class="menuli"><a href="#"><img class="nav-icon" src='{% static "img/settings.png" %}'>&nbsp;Settings</a></li>
+                <li class="menuli"><a href="#"><img class="nav-icon" src='{% static "img/question.png" %}'>&nbsp;Help</a></li>
+            </ul>
             <ul class="navbar-nav ml-auto ml-md-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
@@ -92,97 +109,86 @@
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
+                    <div class="sb-sidenav-menu" style="padding-left: 5%; padding-right: 5%;">
                         <div class="nav">
+                            <br>
                           <!-- Navbar Search-->
-                          <div class="serchbar" style="width:80% !important;">
-                          <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                              <div class="input-group">
-                                    <input class="form-control input-sm" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
-                                  <div class="input-group-append">
-                                      <button class="btn btn-primary btn-sm" type="button"><i class="fas fa-search"></i></button>
-                                  </div>
-                              </div>
-                          </form>
+                            <form>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button id="button-addon8" type="submit" class="btn btn-danger"><i class="fa fa-search"></i></button>
+                                    </div>
+                                    <input type="search" placeholder="Search for..." aria-describedby="button-addon8" class="form-control">
+                                </div>
+                            </form>
                         </div>
-                            <div class="sb-sidenav-menu-heading">Interface</div>
+                        <br><br>
+                            <div class="sb-sidenav-menu-heading">CCTV</div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
                                 ><div class="sb-nav-link-icon"></div>
-                                Layouts
+                                branch_1
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                             ></a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="">Static Navigation</a><a class="nav-link" href="">Light Sidenav</a></nav>
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="">section1</a><a class="nav-link" href="">section2</a></nav>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="sb-sidenav-footer">
-                        <div style="display: inline-block;">
-                          <button type="button" name="button" class="btn btn-default btn-md btn-category trigger">Category
-                          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                        </button>
-                      </div>
-                      <div style="display: inline-block;">
-                        <button type="button" name="button" class="btn btn-default btn-md btn-category trigger2">Camera
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                      </button>
-                    </div>
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
+                            ><div class="sb-nav-link-icon"></div>
+                                <?php
+                                if (isset($_POST["makecate"]))
+                                {
+                                    $makecate = $_POST["makecate"];
+                                    echo $makecate;
+                                }
+                                else
+                                {
+                                    $makecate = null;
+                                    echo "branch2";
+                                }
+                                ?>
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="">
+                                        <?php
+                                    if (isset($_POST["regcamera"]))
+                                    {
+                                    $regcamera = $_POST["regcamera"];
+                                    echo $regcamera;
+                                    }
+                                    else
+                                    {
+                                   $regcamera = null;
+                                    echo "camera1";
+                                    }
+                                    ?>
+                                    </a>
+                                </nav>
+                            </div>
 
-                    <div id="overlay_t"></div>
-                    <div id="popup_layer">Add Category
-                      <div>
-                        <form method="POST" action="index.html">
-                          <input type="text" name="makecate" class=form-control"/>
-                          <button type="button" name="button" class="close">취소</button>
-                        <input type="submit" value="생성" >
-                        </form>
-                    </div>
-                    </div>
-
-                    <div id="overlay_t2"></div>
-                    <div id="popup_layer2">Add Camera
-                      <div>
-                        <div class="dropdown">
-                          <button id="selected-category" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-                            <span class="caret"></span></button>
-                            <ul id="categorylist" class="dropdown-menu">
-                              <li><a href="#">branch_1</a></li>
-                              <li><a href="#">branch_2</a></li>
-                              <!-- <li><a href="#">JavaScript</a></li> -->
-                            </ul>
-                          </div>
-                          <br />
-                          <form method="POST" action="make.html">
-                            <input type="text" name="regcamera" class=form-control"/>
-                          </form>
-                        <button type="button" name="button" class="close">취소</button>
-                        <input type="submit" value="생성" >
-                      </div>
                     </div>
 
 
-                    <script>
-                    $('#categorylist li > a').on('click', function() {
-                    // 버튼에 선택된 항목 텍스트 넣기
-                    $('#selected-category').text($(this).text());
 
-                    // 선택된 항목 값(value) 얻기
-                    //alert($(this).attr('value'));
-                  });
-                    </script>
+
+
+
+
+
+
 
                     </div>
                 </nav>
             </div>
-            <div id="layoutSidenav_content">
+            <div id="layoutSidenav_content" style="margin-left:13%; margin-top:5%;">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Dashboard</h1>
+                        <h1 class="mt-4">My  camera</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
-                        <div class="row">
+                        <!--div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
                                     <div class="card-body">Primary Card</div>
@@ -219,26 +225,50 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="row">
-                            <div class="col-xl-6">
+                            <div class="col-md-4">
                                 <div class="card mb-4">
-                                    <div class="card-header"><i class="fas fa-chart-area mr-1"></i>Area Chart Example</div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                                    <div class="card-header">section1</div>
+                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="250"></canvas></div>
                                 </div>
                             </div>
-                            <div class="col-xl-6">
+                            <div class="col-md-4">
                                 <div class="card mb-4">
-                                    <div class="card-header"><i class="fas fa-chart-bar mr-1"></i>Bar Chart Example</div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                                    <div class="card-header">section2</div>
+                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="250"></canvas></div>
                                 </div>
+                            </div>
+
+                        <div class="col-md-4">
+                            <div class="card mb-4">
+                                <div class="card-header">section3</div>
+                                <div class="card-body"><canvas id="myAreaChart" width="100%" height="250"></canvas></div>
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="card mb-4">
+                                <div class="card-header">counter</div>
+                                <div class="card-body"><canvas id="myAreaChart" width="100%" height="250"></canvas></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card mb-4">
+                                <div class="card-header">kitchen</div>
+                                <div class="card-body"><canvas id="myAreaChart" width="100%" height="250"></canvas></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card mb-4">
+                                <div class="card-header">warehouse</div>
+                                <div class="card-body"><canvas id="myAreaChart" width="100%" height="250"></canvas></div>
+                            </div>
+                        </div></div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2019</div>
+                            <div class="text-muted">Copyright &copy; LOOKATTHIS Website 2002</div>
                             <div>
                                 <a href="#">Privacy Policy</a>
                                 &middot;
